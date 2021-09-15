@@ -1,6 +1,6 @@
 # 总体说明
 
-> 出题官请移步这里：[出题指引](/#intver)
+> 出题官请移步这里：[出题指引](https://labfiles.acmcoder.com/ojhtml/index.html#/intver)
 
 > Linux系统，文件名大小写敏感，在c/c++引用头文件时尤其需要注意；
 
