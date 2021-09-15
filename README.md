@@ -1,5 +1,7 @@
 # 总体说明
 
+> 出题官请移步这里：[出题指引](/#intver)
+
 > Linux系统，文件名大小写敏感，在c/c++引用头文件时尤其需要注意；
 
 > 读取输入时，不要自行加提示消息，例如：```raw_input('Please input two numbers: ')```；
@@ -48,6 +50,169 @@ done
 > 关于为什么不提供类似于leetcode的免输入输出模式，这个需要后台录题时录入模版，我们后台是支持免输入输出模式的，但是很少客户使用；我们理解可能是功能不完善，如果有愿意加入我们的，请发送简历至"postmaster@acmcoder.com"。
 
 > 陆续补坑......
+
+## “奇怪”的输入输出
+
+### 说明
+> 目前，赛码网有大一半的题目都是客户自己的出题官出的，也就是说可能是你未来的同事出的；
+
+> 对于这些题目的输入输出，可能会有些直接，需要考生多编写点输入输出代码；
+
+> 我们尽量在改进出题系统的核心函数模式，让更多的出题官愿意使用核心函数模式；
+
+> 有些考生可能要吐槽，客户自己出的题目，赛码网为什么不改进下题目的输入输出？
+
+这个问的很好，因为目前赛码网的编程题的出题量是巨大的，根本审核不过来，只要题目能跑通，题目就是合格的。
+
+### 没有给出矩阵的行列数
+```
+有些输入可能是：
+输入一个矩阵，每行以空格分隔。
+3 2 3
+1 6 5
+7 8 9
+```
+
+> 对于这种没有给定矩阵行列数的输入，我们只能按照字符串拆分来进行。
+
+> python
+```python3
+#!/usr/bin/env python  
+# coding=utf-8
+arr = []
+while 1:
+    s = input()
+
+    if s != "":
+        arr.append(list(s.split()))
+    else:
+        break
+# 使用自测数据按钮时调试用，正式提交时要删掉。
+print(arr)
+```
+
+> js
+
+```js
+let arr = [];
+let line;
+while ((line = read_line()) != "") {
+    arr.push(line.split(' ').map(v=>parseInt(v)));
+}
+// 使用自测数据按钮时调试用，正式提交时要删掉。
+for (let i=0; i<arr.length; i++) {
+    for (let j=0; j<arr[i].length; j++) {
+        printsth(arr[i][j], ' ');
+    }
+    print();
+}
+```
+
+> java
+
+```java
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    public void myFunc(ArrayList<ArrayList<Integer>> arr) {
+        // 使用自测数据按钮时调试用，正式提交时要删掉。
+        System.out.println(arr);
+    }
+}
+public class Main
+{
+    public static void main(String args[])
+    {
+        Scanner cin = new Scanner(System.in);
+        ArrayList<ArrayList<Integer>> arr = new ArrayList<ArrayList<Integer>>();
+        while(cin.hasNextLine())
+        {
+            ArrayList<Integer> row = new ArrayList<Integer>();
+            String[] arrLine = cin.nextLine().split(" ");
+            for (int i=0; i<arrLine.length; i++) {
+                row.add(Integer.parseInt(arrLine[i]));
+            }
+            arr.add(row);
+        }
+        
+        new Solution().myFunc(arr);
+    }
+}
+```
+
+> c
+
+```c
+#include <stdio.h>
+int main()
+{
+    int arr[1024][1024];
+    int row = 0, col = 0, j = 0;
+    char c;
+    while(scanf("%d", &arr[row][j]) != EOF) {
+        c = getchar();
+        if (row == 0) col++;
+        if (c == '\n') {
+            row++;
+            j = 0;
+        } else if (c == ' ') {
+            j++;
+        }
+    }
+    // 使用自测数据按钮时调试用，正式提交时要删掉。
+    printf("rows: %d, cols: %d\n", row, col);
+    for (int i=0; i<row; i++) {
+        for (int k=0; k<col; k++) {
+            printf("%d ", arr[i][k]);
+        }
+        printf("\n");
+    }
+}
+```
+
+> c++
+
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+using namespace std;
+int main() {
+    vector<vector<int>> arr;
+    string input;
+    while (getline(cin, input)) {
+        stringstream stringin(input);
+        int num;
+        vector<int> a;
+        while (stringin >> num) {
+            a.push_back(num);
+        }
+        arr.push_back(a);
+    }
+    // 使用自测数据按钮时调试用，正式提交时要删掉。
+    cout << "rows: " << arr.size() << ", cols: " << arr[0].size() << endl;
+    for (int i=0; i<arr.size(); i++) {
+        for (int j=0; j<arr[i].size(); j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+```
+
+### Js读取超长字符串
+
+> 小弟陆续添加中
+
+### 输入数组中带有中括号和逗号
+
+> 小弟陆续添加中
+
+### 输出数组或矩阵
+
+> 小弟陆续添加中
 
 ## 自测模式
 > 您可以使用编程界面的“自测数据”进行样例数据或自定义数据的调试；
