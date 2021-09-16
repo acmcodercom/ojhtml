@@ -2,6 +2,8 @@
 
 > 出题官请移步这里：[出题指引](https://labfiles.acmcoder.com/ojhtml/index.html#/intver)
 
+> 所有的测试用例输入，最后一行都有一个回车"\n"！！！
+
 > Linux系统，文件名大小写敏感，在c/c++引用头文件时尤其需要注意；
 
 > 读取输入时，不要自行加提示消息，例如：```raw_input('Please input two numbers: ')```；
@@ -129,11 +131,14 @@ public class Main
         while(cin.hasNextLine())
         {
             ArrayList<Integer> row = new ArrayList<Integer>();
-            String[] arrLine = cin.nextLine().split(" ");
-            for (int i=0; i<arrLine.length; i++) {
-                row.add(Integer.parseInt(arrLine[i]));
+            String line = cin.nextLine();
+            if (line.length() > 0) {
+                String[] arrLine = line.split(" ");
+                for (int i=0; i<arrLine.length; i++) {
+                    row.add(Integer.parseInt(arrLine[i]));
+                }
+                arr.add(row);
             }
-            arr.add(row);
         }
         
         new Solution().myFunc(arr);
@@ -183,13 +188,15 @@ int main() {
     vector<vector<int>> arr;
     string input;
     while (getline(cin, input)) {
-        stringstream stringin(input);
-        int num;
-        vector<int> a;
-        while (stringin >> num) {
-            a.push_back(num);
+        if (input.size() > 0) {
+            stringstream stringin(input);
+            int num;
+            vector<int> a;
+            while (stringin >> num) {
+                a.push_back(num);
+            }
+            arr.push_back(a);
         }
-        arr.push_back(a);
     }
     // 使用自测数据按钮时调试用，正式提交时要删掉。
     cout << "rows: " << arr.size() << ", cols: " << arr[0].size() << endl;
@@ -232,6 +239,65 @@ while 1:
         break
 # 使用自测数据按钮时调试用，正式提交时要删掉。
 print(arr)
+```
+
+> js
+
+```js
+let arr = [];
+let line;
+while ((line = read_line()) != "") {
+    arr.push(line.replace(/\]\,/g, "").replace(/ /g, "").replace(/\[/g, "").replace(/\]/g, "").split(",").map(v=>parseInt(v)));
+}
+// 使用自测数据按钮时调试用，正式提交时要删掉。
+for (let i=0; i<arr.length; i++) {
+    for (let j=0; j<arr[i].length; j++) {
+        printsth(arr[i][j], ' ');
+    }
+    print();
+}
+```
+
+> java
+
+```java
+import java.io.*;
+import java.util.*;
+
+class Solution {
+    public void myFunc(ArrayList<ArrayList<Integer>> arr) {
+        // 使用自测数据按钮时调试用，正式提交时要删掉。
+        System.out.println(arr);
+    }
+}
+public class Main
+{
+    public static void main(String args[])
+    {
+        Scanner cin = new Scanner(System.in);
+        ArrayList<ArrayList<Integer>> arr = new ArrayList<ArrayList<Integer>>();
+        while(cin.hasNextLine())
+        {
+            ArrayList<Integer> row = new ArrayList<Integer>();
+            String line = cin.nextLine().trim();
+            if (line.length() > 0) {
+                String[] arrLine = line
+                    .replace("],", "")
+                    .replace(" ", "")
+                    .replace("[", "")
+                    .replace("]", "")
+                    .split(",");
+
+                for (int i=0; i<arrLine.length; i++) {
+                    row.add(Integer.parseInt(arrLine[i]));
+                }
+                arr.add(row);
+            }
+        }
+        
+        new Solution().myFunc(arr);
+    }
+}
 ```
 
 ### 输出数组或矩阵
