@@ -300,6 +300,77 @@ public class Main
 }
 ```
 
+> c
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main()
+{
+    int arr[1024][1024];
+    char buf[1024];
+    char *tok;
+    
+    int row = 0, col = 0, j = 0;
+    while(NULL != gets(buf)) {
+        if (strlen(buf) > 0) {
+            tok = strtok(buf, " ,[]");
+            while (tok != NULL) {
+                arr[row][j++] = atoi(tok);
+                if (row == 0) col++;
+                tok = strtok(NULL, " ,[]");
+            }
+            row++, j = 0;
+        }
+    }
+    // 使用自测数据按钮时调试用，正式提交时要删掉。
+    printf("rows: %d, cols: %d\n", row, col);
+    for (int i=0; i<row; i++) {
+        for (int k=0; k<col; k++) {
+            printf("%d ", arr[i][k]);
+        }
+        printf("\n");
+    }
+}
+```
+
+> c++
+
+```c++
+#include <iostream>
+#include <vector>
+#include <string>
+#include <string.h>
+#include <sstream>
+using namespace std;
+int main() {
+    vector<vector<int>> arr;
+    string input;
+    char *tok;
+    while (getline(cin, input)) {
+        if (input.size() > 0) {
+            vector<int> a;
+            tok = strtok((char *)input.c_str(), " ,[]");
+            while (tok != NULL) {
+                a.push_back(stoi(tok));
+                tok = strtok(NULL, " ,[]");
+            }
+            arr.push_back(a);
+        }
+    }
+    // 使用自测数据按钮时调试用，正式提交时要删掉。
+    cout << "rows: " << arr.size() << ", cols: " << arr[0].size() << endl;
+    for (int i=0; i<arr.size(); i++) {
+        for (int j=0; j<arr[i].size(); j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+```
+
 ### 输出数组或矩阵
 
 > 小弟陆续添加中
