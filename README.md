@@ -84,7 +84,7 @@ while 1:
     s = input()
 
     if s != "":
-        arr.append(list(s.split()))
+        arr.append(list(map(int, s.split())))
     else:
         break
 # 使用自测数据按钮时调试用，正式提交时要删掉。
@@ -207,8 +207,32 @@ int main() {
 > 小弟陆续添加中
 
 ### 输入数组中带有中括号和逗号
+```
+有些输入可能是，输入一个矩阵：
+[[3,2,3],
+ [1,6,5],
+ [7,8,9]]
+```
 
-> 小弟陆续添加中
+> 对于这种没有给定矩阵行列数的输入，而且还包含中括号和逗号的输入，我们也是只能按照字符串拆分来进行。
+
+这里逗号和右中括号是关键。
+
+> python
+```python3
+#!/usr/bin/env python  
+# coding=utf-8
+arr = []
+while 1:
+    s = input()
+
+    if s != "":
+        arr.append(list(map(int, s.replace("],", "").replace(" ", "").replace("[", "").replace("]", "").split(","))))
+    else:
+        break
+# 使用自测数据按钮时调试用，正式提交时要删掉。
+print(arr)
+```
 
 ### 输出数组或矩阵
 
