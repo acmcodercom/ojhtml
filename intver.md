@@ -84,7 +84,7 @@ hello world 3
 > 第一行应该告诉数组的行数m和列数n
 
 ```
-例如：3 2
+例如：2 3
 ```
 
 > 接下来m行，每行为n个空格分隔的数字
@@ -111,14 +111,14 @@ hello world 6
 
 ```
 对于普通数组：[[1.2, 3.3, 2.6], [2.2, 4.3, 3.6]]，构建的测试用例应该为：
-3 2
+2 3
 1.2 3.3 2.6
 2.2 4.3 3.6
 ```
 
 ```
 对于字符串数组[["hello world 1", "hello world 2", "hello world 3"], ["hello world 4", "hello world 5", "hello world 6"]]，构建的测试用例应该为：
-3 2
+2 3
 hello world 1
 hello world 2
 hello world 3

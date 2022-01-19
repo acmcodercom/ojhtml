@@ -1,6 +1,6 @@
 # 总体说明
 
-> 出题官请移步这里：[出题指引](https://labfiles.acmcoder.com/ojhtml/index.html#/intver)
+> 出题官请移步这里：[出题指引](https://labfiles.acmcoder.com/ojhtml/index.html?v=1#/intver)
 
 > 所有的测试用例输入，最后一行都有一个回车"\n"！！！
 
